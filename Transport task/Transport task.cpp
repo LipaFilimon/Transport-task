@@ -41,9 +41,9 @@ void printPath(int i, int j)
 int main()
 {
 	ifstream input("in.txt");
+	// Файл, в который выводится итоговая таблица минимальных цен
 	ofstream output("out.txt");
-	ofstream p("p.txt");
-
+	
 	int Graph[Vertices][Vertices];
 	for (int i = 0; i < Vertices; ++i)
 	{
@@ -52,13 +52,6 @@ int main()
 			Graph[i][j] = 0;		
 		}			
 	}
-
-	/*for (int i = 0; i < Vertices; ++i)
-	{
-		for (int j = 0; j < Vertices; ++j)
-			cout << Graph[i][j] << " ";
-		cout << endl;
-	}*/
 
 	// Подсчитываем кол-во рёбер
 	int Edges = 0;
@@ -77,13 +70,7 @@ int main()
 		Graph[start - 1][finish - 1] = price;
 	}
 	input.close();
-	/*for (int i = 0; i < Vertices; ++i)
-	{
-		for (int j = 0; j < Vertices; ++j)
-			cout << Graph[i][j] << " ";
-		cout << endl;
-	}
-*/
+	
 	Floyd(Graph, pathMatrix);
 
 	int PointA, PointB;
@@ -112,15 +99,6 @@ int main()
 		output << endl;
 	}
 	output.close();
-
-	for (int i = 0; i < Vertices; i++)
-	{
-		for (int j = 0; j < Vertices; j++)
-			p << pathMatrix[i][j] << "\t";
-		p << endl;
-	}
-	p.close();
-	
 
 	return 0;
 }
